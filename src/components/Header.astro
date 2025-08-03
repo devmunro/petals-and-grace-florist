@@ -5,12 +5,14 @@ const bgImage = "../assets/header-bg.jpg";
 ---
 
 <header
-    class="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
-    style={`background-image: url('/header-bg.jpg')`}
+    class="flex flex-col items-center justify-center min-h-screen bg-[#DBDBDB] md-bg-contain bg-cover bg-no-repeat bg-left"
+    style={`background-image: url('/header.jpg')`}
 >
-    <div class="bg-[#A7A5A6]/85 w-full p-8 rounded-lg flex flex-col space-y-8">
-        <h1 class="text-6xl font-(family-name:--font-cursive) font-bold text-white mb-4 text-center">{title}</h1>
-        <p class="text-xl text-white text-center">{subtitle}</p>
-        <button class="text-md text-white bg-red-400 hover:bg-red-500 p-4 rounded cursor-pointer text-center">Explore Our Collection</button>
+    <div class="bg-[#DBDBDB]/70 md:bg-transparent w-full  p-8 rounded-lg flex flex-col space-y-8 md:items-end">
+       <div class="md:w-1/2 text-center">
+        <h1 class="text-6xl font-(family-name:--font-cursive) font-bold mb-4 ">{title}</h1>
+        <p class="text-xl">{subtitle}</p>
+        </div>
+        <button class="text-md md:w-1/2 text-white bg-red-400 hover:bg-red-500 p-4 rounded cursor-pointer">Explore Our Collection</button>
     </div>
 </header>
