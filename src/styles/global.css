@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import '@fontsource/petit-formal-script';
+
+@theme {
+    --font-cursive: 'Petit Formal Script', cursive;
+  }
