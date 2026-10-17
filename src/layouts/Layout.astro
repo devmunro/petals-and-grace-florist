@@ -68,19 +68,27 @@ const structuredData = canonicalUrl
 		<a class="skip-link" href="#main-content">Skip to content</a>
 		<slot />
 		<script>
-			const revealTargets = document.querySelectorAll('[data-botanical-reveal], [data-scroll-reveal]');
+			const revealTargets = [...document.querySelectorAll('[data-botanical-reveal], [data-scroll-reveal]')].map((observerTarget) => ({
+				observerTarget,
+				revealTarget: observerTarget.hasAttribute('data-reveal-owner')
+					? observerTarget.closest('.botanical-accent') ?? observerTarget
+					: observerTarget,
+			}));
 			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 			if (reduceMotion || !('IntersectionObserver' in window)) {
-				revealTargets.forEach((target) => target.classList.add('is-visible'));
+				revealTargets.forEach(({ revealTarget }) => revealTarget.classList.add('is-visible'));
 			} else {
-				revealTargets.forEach((target) => target.classList.add('is-pending'));
+				revealTargets.forEach(({ revealTarget }) => revealTarget.classList.add('is-pending'));
 				const revealObserver = new IntersectionObserver(
 					(entries, observer) => {
 						entries.forEach((entry) => {
 							if (entry.isIntersecting) {
-								entry.target.classList.remove('is-pending');
-								entry.target.classList.add('is-visible');
+								const revealTarget = entry.target.hasAttribute('data-reveal-owner')
+									? entry.target.closest('.botanical-accent') ?? entry.target
+									: entry.target;
+								revealTarget.classList.remove('is-pending');
+								revealTarget.classList.add('is-visible');
 								observer.unobserve(entry.target);
 							}
 						});
@@ -88,7 +96,7 @@ const structuredData = canonicalUrl
 					{ rootMargin: '0px 0px -10% 0px', threshold: 0.06 },
 				);
 
-				revealTargets.forEach((target) => revealObserver.observe(target));
+				revealTargets.forEach(({ observerTarget }) => revealObserver.observe(observerTarget));
 			}
 		</script>
 	</body>

@@ -1,9 +1,10 @@
 ---
 interface Props {
 	side?: 'left' | 'right';
+	revealOnView?: boolean;
 }
 
-const { side = 'left' } = Astro.props;
+const { side = 'left', revealOnView = false } = Astro.props;
 ---
 
 <div class={`botanical-accent botanical-accent--${side}`} aria-hidden="true">
@@ -46,4 +47,5 @@ const { side = 'left' } = Astro.props;
 			<path class="botanical-accent__vein" pathLength="1" d="M63 40C51 29 42 18 34 9" />
 		</g>
 	</svg>
+	{revealOnView && <span class="botanical-accent__trigger" data-botanical-reveal data-reveal-owner></span>}
 </div>
