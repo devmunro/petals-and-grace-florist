@@ -449,43 +449,13 @@ img {
 	to { opacity: 1; transform: translateY(0); }
 }
 
-.site-header__inner {
-	animation: content-fade-up 650ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
-}
-
 [data-scroll-reveal].is-pending {
 	opacity: 0;
 	transform: translateY(18px);
 }
 
 [data-scroll-reveal].is-visible {
-	animation: content-fade-up 860ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
-}
-
-.hero__copy-inner.is-visible,
-.collection__heading.is-visible,
-.studio__statement.is-visible {
-	animation-delay: 90ms;
-}
-
-.studio__copy.is-visible {
-	animation-delay: 170ms;
-}
-
-.collection-card:nth-child(1) .collection-card__body.is-visible {
-	animation-delay: 80ms;
-}
-
-.collection-card:nth-child(2) .collection-card__body.is-visible {
-	animation-delay: 140ms;
-}
-
-.collection-card:nth-child(3) .collection-card__body.is-visible {
-	animation-delay: 200ms;
-}
-
-.collection-card:nth-child(4) .collection-card__body.is-visible {
-	animation-delay: 260ms;
+	animation: content-fade-up 900ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
 }
 
 .is-pending .bloom-accent__stem,
