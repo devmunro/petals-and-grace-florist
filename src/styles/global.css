@@ -970,11 +970,11 @@ img {
 }
 
 .site-footer__inner {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	display: flex;
 	align-items: center;
-	gap: 1.5rem 2rem;
-	padding-top: 3.5rem;
+	justify-content: space-between;
+	gap: clamp(1.25rem, 2.5vw, 3rem);
+	padding-block: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 .brand--footer .brand__name {
@@ -986,36 +986,20 @@ img {
 }
 
 .site-footer__line {
-	justify-self: end;
 	max-width: 25rem;
 	margin: 0;
 	color: #f6e9e5;
 	font-size: clamp(1rem, 1.5vw, 1.2rem);
 	line-height: 1.55;
-	text-align: right;
+	text-align: center;
 }
 
 .site-footer__nav {
-	grid-column: 1 / -1;
-	justify-content: center;
-	flex-wrap: wrap;
-	padding: 1.4rem 0 1.6rem;
-	border-top: 1px solid rgba(255, 253, 250, 0.22);
-	border-bottom: 1px solid rgba(255, 253, 250, 0.22);
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	gap: clamp(0.9rem, 1.8vw, 1.8rem);
 	color: #fffdfa;
 	font-size: 0.8rem;
-}
-
-.site-footer__bottom {
-	display: flex;
-	grid-column: 1 / -1;
-	justify-content: space-between;
-	gap: 1rem;
-	padding: 0 0 1.6rem;
-	color: #f1dfdb;
-	font-family: var(--font-sans);
-	font-size: 0.7rem;
-	letter-spacing: 0.03em;
 }
 
 @media (min-width: 1920px) {
@@ -1142,6 +1126,23 @@ img {
 	.studio > .botanical-accent {
 		display: none;
 	}
+
+	.site-footer__inner {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 1.15rem;
+		padding-block: 2.5rem;
+	}
+
+	.site-footer__line {
+		text-align: left;
+	}
+
+	.site-footer__nav {
+		justify-content: flex-start;
+		gap: 0.6rem 1.2rem;
+		flex-wrap: wrap;
+	}
 }
 
 @media (max-width: 600px) {
@@ -1248,27 +1249,6 @@ img {
 		gap: 0.8rem;
 	}
 
-	.site-footer__inner {
-		grid-template-columns: 1fr;
-		gap: 1.15rem;
-		padding-top: 2.8rem;
-	}
-
-	.site-footer__line {
-		justify-self: start;
-		text-align: left;
-	}
-
-	.site-footer__nav {
-		grid-column: 1;
-		justify-content: flex-start;
-		gap: 0.6rem 1.2rem;
-		margin-top: 0.45rem;
-	}
-
-	.site-footer__bottom {
-		grid-column: 1;
-	}
 }
 
 @media (max-width: 360px) {
