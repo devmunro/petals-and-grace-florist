@@ -444,18 +444,17 @@ img {
 	100% { stroke-dashoffset: 0; fill-opacity: 1; }
 }
 
-@keyframes content-fade-up {
-	from { opacity: 0; transform: translateY(18px); }
-	to { opacity: 1; transform: translateY(0); }
+@keyframes content-fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
 }
 
 [data-scroll-reveal].is-pending {
 	opacity: 0;
-	transform: translateY(18px);
 }
 
 [data-scroll-reveal].is-visible {
-	animation: content-fade-up 900ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
+	animation: content-fade 900ms ease-out both;
 }
 
 .is-pending .bloom-accent__stem,
@@ -1156,12 +1155,21 @@ img {
 }
 
 @media (min-width: 1920px) {
-	.hero__layout {
-		min-height: 790px;
-	}
-
 	.collection-grid {
 		gap: 2.25rem;
+	}
+}
+
+@media (min-width: 801px) {
+	.hero {
+		height: max(600px, calc(100vh - 85px));
+		height: max(600px, calc(100svh - 85px));
+		padding: 0;
+	}
+
+	.hero__layout {
+		height: 100%;
+		min-height: 0;
 	}
 }
 
