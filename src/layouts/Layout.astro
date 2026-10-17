@@ -68,7 +68,7 @@ const structuredData = canonicalUrl
 		<a class="skip-link" href="#main-content">Skip to content</a>
 		<slot />
 		<script>
-			const revealTargets = [...document.querySelectorAll('[data-botanical-reveal], [data-scroll-reveal]')].map((observerTarget) => ({
+			const revealTargets = [...document.querySelectorAll('[data-botanical-reveal]')].map((observerTarget) => ({
 				observerTarget,
 				revealTarget: observerTarget.hasAttribute('data-reveal-owner')
 					? observerTarget.closest('.botanical-accent') ?? observerTarget
