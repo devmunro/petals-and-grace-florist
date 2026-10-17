@@ -737,7 +737,7 @@ img {
 	height: auto;
 	aspect-ratio: 9 / 26;
 	color: var(--sage);
-	opacity: 0.26;
+	opacity: 0.34;
 	pointer-events: none;
 	transition: opacity 700ms ease;
 }
@@ -776,7 +776,7 @@ img {
 }
 
 .botanical-accent__leaf {
-	fill: rgba(105, 113, 92, 0.11);
+	fill: rgba(105, 113, 92, 0.14);
 }
 
 .botanical-accent__branch {
@@ -864,7 +864,16 @@ img {
 	fill: rgba(105, 113, 92, 0.12);
 	stroke: currentColor;
 	stroke-width: 1.1;
+	stroke-linecap: round;
 	stroke-linejoin: round;
+}
+
+.studio__ornament-vein {
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 0.85;
+	stroke-linecap: round;
+	vector-effect: non-scaling-stroke;
 }
 
 .studio__copy {
