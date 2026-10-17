@@ -4,7 +4,7 @@ import heroImage from '../assets/flowers/hero.jpg';
 import BloomingFlower from './BloomingFlower.astro';
 ---
 
-<section class="hero botanical-zone" aria-labelledby="hero-title" data-botanical-reveal data-scroll-reveal>
+<section class="hero botanical-zone" aria-labelledby="hero-title" data-botanical-reveal>
 	<div class="hero__layout">
 		<div class="hero__copy">
 			<div class="hero__copy-inner">
@@ -40,6 +40,11 @@ import BloomingFlower from './BloomingFlower.astro';
 				decoding="async"
 				class="hero__photo"
 			/>
+			<div class="hero__visual-brand" aria-hidden="true">
+				<span>Petals</span>
+				<span class="hero__visual-ampersand">&amp;</span>
+				<span>Grace</span>
+			</div>
 			<BloomingFlower />
 		</div>
 	</div>
