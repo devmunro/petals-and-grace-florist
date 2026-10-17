@@ -66,18 +66,27 @@ const arrangements = [
 			{arrangements.map((arrangement) => (
 				<article class="collection-card">
 					<div class="collection-card__image-wrap">
-						<Picture
-							src={arrangement.image}
-							alt={arrangement.alt}
-							formats={['avif', 'webp']}
-							widths={[320, 480, 640]}
-							sizes="(min-width: 1532px) 351px, (min-width: 1200px) calc(25vw - 26px), (min-width: 801px) calc(50vw - 1.5rem), (min-width: 601px) min(calc(50vw - 27px), 324px), (max-width: 360px) calc(100vw - 1.5rem), calc(100vw - 2rem)"
-							width={640}
-							height={640}
-							loading="lazy"
-							decoding="async"
-							class="collection-card__image"
-						/>
+						<button
+							class="collection-card__image-trigger"
+							type="button"
+							aria-label={`View ${arrangement.title} details`}
+							aria-haspopup="dialog"
+							aria-controls={`flower-dialog-${arrangement.id}`}
+							data-open-arrangement={arrangement.id}
+						>
+							<Picture
+								src={arrangement.image}
+								alt={arrangement.alt}
+								formats={['avif', 'webp']}
+								widths={[320, 480, 640]}
+								sizes="(min-width: 1532px) 351px, (min-width: 1200px) calc(25vw - 26px), (min-width: 801px) calc(50vw - 1.5rem), (min-width: 601px) min(calc(50vw - 27px), 324px), (max-width: 360px) calc(100vw - 1.5rem), calc(100vw - 2rem)"
+								width={640}
+								height={640}
+								loading="lazy"
+								decoding="async"
+								class="collection-card__image"
+							/>
+						</button>
 					</div>
 					<div class="collection-card__body">
 						<div class="collection-card__meta">
@@ -144,9 +153,21 @@ const arrangements = [
 
 <script>
 	document.querySelectorAll<HTMLButtonElement>('[data-open-arrangement]').forEach((button) => {
-		button.addEventListener('click', () => {
+		button.addEventListener('click', async () => {
 			const dialog = document.getElementById(`flower-dialog-${button.dataset.openArrangement}`);
-			if (dialog instanceof HTMLDialogElement) dialog.showModal();
+			if (!(dialog instanceof HTMLDialogElement)) return;
+
+			const image = dialog.querySelector('img');
+			if (image) {
+				image.loading = 'eager';
+				try {
+					await image.decode();
+				} catch {
+					// Keep the flower details available if an image fails to decode.
+				}
+			}
+
+			if (!dialog.open) dialog.showModal();
 		});
 	});
 

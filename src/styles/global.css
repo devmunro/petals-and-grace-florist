@@ -410,7 +410,13 @@ img {
 
 .bloom-accent__branch,
 .bloom-accent__leaf,
-.bloom-accent__vein {
+.bloom-accent__vein,
+.botanical-accent__branch,
+.botanical-accent__leaf,
+.botanical-accent__vein,
+.studio__ornament-branch,
+.studio__ornament-leaf,
+.studio__ornament-vein {
 	stroke-dasharray: 1;
 	stroke-dashoffset: 0;
 }
@@ -420,12 +426,6 @@ img {
 	transform-origin: 120px 197px;
 	transform: scale(1);
 	opacity: 1;
-}
-
-.bloom-accent__leaf-set,
-.botanical-accent__leaf-set,
-.studio__ornament-leaf-set {
-	transform-box: view-box;
 }
 
 @keyframes botanical-stem-grow {
@@ -444,10 +444,58 @@ img {
 	100% { stroke-dashoffset: 0; fill-opacity: 1; }
 }
 
-@keyframes botanical-leaf-grow {
-	0% { opacity: 0; transform: scale(0.06); }
-	78% { opacity: 1; transform: scale(1.04); }
-	100% { opacity: 1; transform: scale(1); }
+@keyframes content-fade-up {
+	from { opacity: 0; transform: translateY(14px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.site-header__inner {
+	animation: content-fade-up 650ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+.is-pending .hero__copy-inner,
+.is-pending .collection__heading,
+.is-pending .collection-card__body,
+.is-pending .studio__statement,
+.is-pending .studio__copy,
+.is-pending .site-footer__inner {
+	opacity: 0;
+	transform: translateY(14px);
+}
+
+.is-visible .hero__copy-inner,
+.is-visible .collection__heading,
+.is-visible .collection-card__body,
+.is-visible .studio__statement,
+.is-visible .studio__copy,
+.is-visible .site-footer__inner {
+	animation: content-fade-up 680ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+.is-visible .hero__copy-inner,
+.is-visible .collection__heading,
+.is-visible .studio__statement {
+	animation-delay: 90ms;
+}
+
+.is-visible .studio__copy {
+	animation-delay: 180ms;
+}
+
+.is-visible .collection-card__body {
+	animation-delay: 160ms;
+}
+
+.is-visible .collection-card:nth-child(2) .collection-card__body {
+	animation-delay: 280ms;
+}
+
+.is-visible .collection-card:nth-child(3) .collection-card__body {
+	animation-delay: 400ms;
+}
+
+.is-visible .collection-card:nth-child(4) .collection-card__body {
+	animation-delay: 520ms;
 }
 
 .is-pending .bloom-accent__stem,
@@ -470,10 +518,18 @@ img {
 	fill-opacity: 0;
 }
 
-.is-pending .botanical-accent__leaf-set,
-.is-pending .studio__ornament-leaf-set {
-	opacity: 0;
-	transform: scale(0.06);
+.is-pending .botanical-accent__branch,
+.is-pending .botanical-accent__leaf,
+.is-pending .botanical-accent__vein,
+.is-pending .studio__ornament-branch,
+.is-pending .studio__ornament-leaf,
+.is-pending .studio__ornament-vein {
+	stroke-dashoffset: 1;
+}
+
+.is-pending .botanical-accent__leaf,
+.is-pending .studio__ornament-leaf {
+	fill-opacity: 0;
 }
 
 .bloom-accent__leaf-set {
@@ -594,6 +650,25 @@ img {
 		radial-gradient(ellipse at 28% 35%, rgba(207, 154, 161, 0.24), transparent 36%),
 		radial-gradient(ellipse at 74% 74%, rgba(216, 198, 165, 0.24), transparent 34%),
 		var(--blush);
+}
+
+.collection-card__image-trigger {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+}
+
+.collection-card__image-trigger:focus-visible {
+	outline: 3px solid var(--rosewood-dark);
+	outline-offset: -4px;
+}
+
+.collection-card__image-trigger:focus-visible .collection-card__image {
+	transform: scale(1.025);
 }
 
 .collection-card__image-wrap picture {
@@ -725,6 +800,15 @@ img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.arrangement-dialog[open] .arrangement-dialog__image {
+	animation: dialog-image-fade 420ms ease-out both;
+}
+
+@keyframes dialog-image-fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
 }
 
 .arrangement-dialog__copy {
@@ -881,16 +965,23 @@ img {
 }
 
 .botanical-accent__leaf-set {
-	opacity: 1;
-	transform: scale(1);
+	--leaf-delay: calc(300ms + var(--leaf-order) * 300ms);
 }
 
 .is-visible .botanical-accent__stem {
-	animation: botanical-stem-grow 1.35s cubic-bezier(0.35, 0, 0.2, 1) both;
+	animation: botanical-stem-grow 2.2s cubic-bezier(0.35, 0, 0.2, 1) both;
 }
 
-.is-visible .botanical-accent__leaf-set {
-	animation: botanical-leaf-grow 480ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(1.15s + var(--leaf-order) * 110ms) both;
+.is-visible .botanical-accent__branch {
+	animation: botanical-line-draw 180ms ease-out var(--leaf-delay) both;
+}
+
+.is-visible .botanical-accent__leaf {
+	animation: botanical-leaf-draw 320ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(var(--leaf-delay) + 120ms) both;
+}
+
+.is-visible .botanical-accent__vein {
+	animation: botanical-line-draw 180ms ease-out calc(var(--leaf-delay) + 420ms) both;
 }
 
 .botanical-accent__leaf {
@@ -974,16 +1065,23 @@ img {
 }
 
 .studio__ornament-leaf-set {
-	opacity: 1;
-	transform: scale(1);
+	--leaf-delay: calc(180ms + var(--leaf-order) * 240ms);
 }
 
 .is-visible .studio__ornament-stem {
-	animation: botanical-stem-grow 620ms ease-out both;
+	animation: botanical-stem-grow 850ms ease-out both;
 }
 
-.is-visible .studio__ornament-leaf-set {
-	animation: botanical-leaf-grow 360ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(540ms + var(--leaf-order) * 100ms) both;
+.is-visible .studio__ornament-branch {
+	animation: botanical-line-draw 120ms ease-out var(--leaf-delay) both;
+}
+
+.is-visible .studio__ornament-leaf {
+	animation: botanical-leaf-draw 260ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(var(--leaf-delay) + 60ms) both;
+}
+
+.is-visible .studio__ornament-vein {
+	animation: botanical-line-draw 180ms ease-out calc(var(--leaf-delay) + 280ms) both;
 }
 
 .studio__ornament-branch {
@@ -1402,21 +1500,21 @@ img {
 		stroke-dashoffset: 0 !important;
 	}
 
-	.bloom-accent__leaf-set,
-	.botanical-accent__leaf-set,
-	.studio__ornament-leaf-set {
-		animation: none !important;
-		opacity: 1 !important;
-		transform: none !important;
-	}
-
 	.bloom-accent__branch,
 	.bloom-accent__leaf,
-	.bloom-accent__vein {
+	.bloom-accent__vein,
+	.botanical-accent__branch,
+	.botanical-accent__leaf,
+	.botanical-accent__vein,
+	.studio__ornament-branch,
+	.studio__ornament-leaf,
+	.studio__ornament-vein {
 		stroke-dashoffset: 0 !important;
 	}
 
-	.bloom-accent__leaf {
+	.bloom-accent__leaf,
+	.botanical-accent__leaf,
+	.studio__ornament-leaf {
 		fill-opacity: 1 !important;
 	}
 }
