@@ -334,6 +334,15 @@ img {
 	aspect-ratio: 6 / 13;
 	color: var(--rosewood);
 	pointer-events: none;
+	transition: opacity 650ms ease;
+}
+
+.is-pending .bloom-accent {
+	opacity: 0;
+}
+
+.is-visible .bloom-accent {
+	opacity: 1;
 }
 
 .bloom-accent svg {
@@ -343,6 +352,7 @@ img {
 }
 
 .bloom-accent__stem,
+.bloom-accent__branch,
 .bloom-accent__leaf,
 .bloom-accent__vein,
 .bloom-accent__blossom path {
@@ -353,16 +363,15 @@ img {
 	vector-effect: non-scaling-stroke;
 }
 
-.bloom-accent__stem,
-.bloom-accent__leaf,
-.bloom-accent__vein {
-	stroke-dasharray: 1;
-	stroke-dashoffset: 0;
-}
-
 .bloom-accent__stem {
 	stroke: var(--sage);
 	stroke-width: 2.6;
+}
+
+.bloom-accent__branch {
+	fill: none;
+	stroke: var(--sage);
+	stroke-width: 2.1;
 }
 
 .bloom-accent__leaf {
@@ -398,31 +407,13 @@ img {
 	fill: var(--rosewood-dark);
 }
 
-.is-pending .bloom-accent__stem,
-.is-pending .bloom-accent__leaf,
-.is-pending .bloom-accent__vein {
-	stroke-dashoffset: 1;
-}
-
 .is-pending .bloom-accent__blossom {
 	transform: scale(0.06);
 	opacity: 0;
 }
 
-.is-visible .bloom-accent__stem {
-	transition: stroke-dashoffset 1.55s cubic-bezier(0.25, 0.75, 0.25, 1);
-}
-
-.is-visible .bloom-accent__leaf {
-	transition: stroke-dashoffset 1.1s ease-out 1.55s;
-}
-
-.is-visible .bloom-accent__vein {
-	transition: stroke-dashoffset 800ms ease-out 1.75s;
-}
-
 .is-visible .bloom-accent__blossom {
-	transition: transform 950ms cubic-bezier(0.2, 0.75, 0.25, 1) 1.55s, opacity 450ms ease-out 1.55s;
+	transition: transform 950ms cubic-bezier(0.2, 0.75, 0.25, 1) 350ms, opacity 450ms ease-out 350ms;
 }
 
 .hero__visual picture {
@@ -761,9 +752,10 @@ img {
 }
 
 .botanical-accent--right {
-	right: clamp(0.5rem, 3vw, 3rem);
+	right: -1rem;
 	bottom: 12%;
 	transform: scaleX(-1);
+	width: clamp(130px, 12vw, 160px);
 }
 
 .botanical-accent svg {
@@ -773,6 +765,7 @@ img {
 }
 
 .botanical-accent__stem,
+.botanical-accent__branch,
 .botanical-accent__leaf,
 .botanical-accent__vein {
 	stroke: currentColor;
@@ -784,6 +777,10 @@ img {
 
 .botanical-accent__leaf {
 	fill: rgba(105, 113, 92, 0.11);
+}
+
+.botanical-accent__branch {
+	fill: none;
 }
 
 .botanical-accent__vein {
@@ -835,8 +832,8 @@ img {
 }
 
 .studio__ornament svg {
-	width: 2.5rem;
-	height: 2.5rem;
+	width: 3rem;
+	height: 3.125rem;
 	transition: opacity 450ms ease;
 }
 
@@ -845,11 +842,19 @@ img {
 }
 
 .studio__ornament-stem,
+.studio__ornament-branch,
 .studio__ornament-leaf {
 	vector-effect: non-scaling-stroke;
 }
 
 .studio__ornament-stem {
+	stroke: currentColor;
+	stroke-width: 1.1;
+	stroke-linecap: round;
+}
+
+.studio__ornament-branch {
+	fill: none;
 	stroke: currentColor;
 	stroke-width: 1.1;
 	stroke-linecap: round;
@@ -864,6 +869,7 @@ img {
 
 .studio__copy {
 	max-width: 42rem;
+	padding-right: clamp(6rem, 9vw, 8rem);
 }
 
 .studio__copy > p {
@@ -1067,6 +1073,7 @@ img {
 
 	.studio__copy {
 		max-width: none;
+		padding-right: 0;
 	}
 
 	.collection > .botanical-accent,
@@ -1234,12 +1241,6 @@ img {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
-	}
-
-	.bloom-accent__stem,
-	.bloom-accent__leaf,
-	.bloom-accent__vein {
-		stroke-dashoffset: 0;
 	}
 
 	.bloom-accent__blossom {

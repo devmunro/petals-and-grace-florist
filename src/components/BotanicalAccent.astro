@@ -8,21 +8,16 @@ const { side = 'left' } = Astro.props;
 
 <div class={`botanical-accent botanical-accent--${side}`} aria-hidden="true">
 	<svg viewBox="0 0 180 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<!-- Leaf shapes sit beneath the stem so every branch junction remains visibly joined. -->
-		<path class="botanical-accent__leaf" d="M37 460C27 455 19 443 17 426C32 426 42 438 43 454Z" />
-		<path class="botanical-accent__leaf" d="M57 411C68 390 87 380 108 379C103 400 84 414 57 411Z" />
-		<path class="botanical-accent__leaf" d="M79 342C62 338 48 324 43 305C62 306 77 319 79 342Z" />
-		<path class="botanical-accent__leaf" d="M81 290C97 270 115 257 134 252C131 274 112 290 81 290Z" />
-		<path class="botanical-accent__leaf" d="M67 228C50 224 37 209 35 190C54 191 68 205 67 228Z" />
-		<path class="botanical-accent__leaf" d="M73 163C91 143 109 131 128 126C125 148 106 163 73 163Z" />
-		<path class="botanical-accent__leaf" d="M104 107C89 104 77 91 74 72C91 73 104 85 104 107Z" />
+		<!-- Leaf blades, petioles, and midribs meet from the stem outward. -->
+		<path class="botanical-accent__leaf" d="M29 453C22 451 18 441 17 426C32 426 41 437 43 452C38 452 33 453 29 453Z" />
+		<path class="botanical-accent__leaf" d="M64 405C77 386 93 379 108 379C104 398 87 412 64 405Z" />
+		<path class="botanical-accent__leaf" d="M71 337C56 333 46 320 43 305C60 306 73 318 71 337Z" />
+		<path class="botanical-accent__leaf" d="M88 285C100 267 117 256 134 252C130 273 112 287 88 285Z" />
+		<path class="botanical-accent__leaf" d="M59 224C46 220 37 207 35 190C52 191 64 204 59 224Z" />
+		<path class="botanical-accent__leaf" d="M81 158C94 140 111 130 128 126C125 146 108 160 81 158Z" />
+		<path class="botanical-accent__leaf" d="M97 102C85 99 77 87 74 72C90 73 101 84 97 102Z" />
 		<path class="botanical-accent__stem" d="M22 514C27 488 32 470 37 460C42 441 51 417 57 411C66 393 73 360 79 342C82 323 83 302 81 290C78 268 69 246 67 228C65 204 69 180 73 163C77 139 91 116 104 107C117 93 127 57 126 18" />
-		<path class="botanical-accent__vein" d="M37 460C31 448 24 437 18 428" />
-		<path class="botanical-accent__vein" d="M57 411C73 397 91 386 106 381" />
-		<path class="botanical-accent__vein" d="M79 342C66 327 54 315 45 307" />
-		<path class="botanical-accent__vein" d="M81 290C99 274 116 261 132 254" />
-		<path class="botanical-accent__vein" d="M67 228C55 211 44 199 37 192" />
-		<path class="botanical-accent__vein" d="M73 163C91 147 108 135 126 128" />
-		<path class="botanical-accent__vein" d="M104 107C94 92 84 81 76 74" />
+		<path class="botanical-accent__branch" d="M37 460C34 457 31 455 29 453M57 411C59 409 62 407 64 405M79 342C76 340 73 338 71 337M81 290C83 288 86 286 88 285M67 228C64 226 61 225 59 224M73 163C76 161 79 159 81 158M104 107C102 105 99 103 97 102" />
+		<path class="botanical-accent__vein" d="M29 453C25 444 21 435 18 428M64 405C78 394 92 386 106 381M71 337C62 326 52 315 45 307M88 285C101 271 117 260 132 254M59 224C52 212 43 200 37 192M81 158C94 145 110 135 126 128M97 102C89 91 82 81 76 74" />
 	</svg>
 </div>
