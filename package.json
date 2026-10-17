@@ -1,5 +1,5 @@
 {
-  "name": "florist",
+  "name": "petals-and-grace-florist",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@fontsource/petit-formal-script": "^5.2.6",
-    "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.12.8",
-    "tailwindcss": "^4.1.11"
+    "astro": "^5.12.8"
   }
 }

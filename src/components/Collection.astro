@@ -1,0 +1,159 @@
+---
+import { Picture } from 'astro:assets';
+import BotanicalAccent from './BotanicalAccent.astro';
+import weddingImage from '../assets/flowers/wedding.jpg';
+import tulipImage from '../assets/flowers/tulips.jpg';
+import sunflowerImage from '../assets/flowers/sunflower.jpg';
+import orchidImage from '../assets/flowers/orchids.jpg';
+
+const arrangements = [
+	{
+		id: 'rose-bouquet',
+		number: '01',
+		category: 'A TIMELESS FAVOURITE',
+		title: 'Rose Bouquet',
+		image: weddingImage,
+		alt: 'A bridal bouquet of blush and ivory roses with delicate baby’s breath',
+		description: 'Velvety petals, soft layers, and a little old-fashioned romance.',
+		detail: 'Blush and ivory roses nestle together with delicate baby’s breath, creating a softly layered silhouette.',
+		palette: 'Blush · ivory · soft green',
+	},
+	{
+		id: 'tulip-arrangement',
+		number: '02',
+		category: 'A BRIGHTER MOMENT',
+		title: 'Tulip Arrangement',
+		image: tulipImage,
+		alt: 'A close gathering of pink and ivory tulips in full bloom',
+		description: 'Fresh colour and graceful stems that bring a room to life.',
+		detail: 'A close gathering of pink and ivory tulips brings a fresh colour story and a clean, graceful shape.',
+		palette: 'Pink · ivory · fresh green',
+	},
+	{
+		id: 'seasonal-flowers',
+		number: '03',
+		category: 'A LITTLE SUNSHINE',
+		title: 'Seasonal Flowers',
+		image: sunflowerImage,
+		alt: 'Golden sunflowers surrounded by small white daisies',
+		description: 'Golden petals and cheerful shapes with a bright, easy spirit.',
+		detail: 'Golden sunflower heads and small white daisies make a bright, sunlit pairing.',
+		palette: 'Golden yellow · white · green',
+	},
+	{
+		id: 'orchid-elegance',
+		number: '04',
+		category: 'A TOUCH OF ELEGANCE',
+		title: 'Orchid Elegance',
+		image: orchidImage,
+		alt: 'Delicate pink and white orchid flowers against a deep background',
+		description: 'Sculptural blooms, delicate colour, and a quietly graceful finish.',
+		detail: 'Pink and white orchid blooms create a sculptural silhouette against a deep, atmospheric background.',
+		palette: 'Soft pink · white · deep green',
+	},
+];
+---
+
+<section id="collection" class="collection botanical-zone" aria-labelledby="collection-title" data-botanical-reveal>
+	<div class="page-width collection__inner">
+		<div class="section-heading collection__heading">
+			<p class="eyebrow">A FEW FAVOURITES</p>
+			<h2 id="collection-title">Find the feeling in the flowers.</h2>
+			<p>From soft and romantic to bright and joyful, explore a little collection of blooms for the moments that matter.</p>
+		</div>
+
+		<div class="collection-grid">
+			{arrangements.map((arrangement) => (
+				<article class="collection-card">
+					<div class="collection-card__image-wrap">
+						<Picture
+							src={arrangement.image}
+							alt={arrangement.alt}
+							formats={['avif', 'webp']}
+							widths={[320, 480, 640]}
+							sizes="(min-width: 1532px) 351px, (min-width: 1200px) calc(25vw - 26px), (min-width: 801px) calc(50vw - 1.5rem), (min-width: 601px) min(calc(50vw - 27px), 324px), (max-width: 360px) calc(100vw - 1.5rem), calc(100vw - 2rem)"
+							width={640}
+							height={640}
+							loading="lazy"
+							decoding="async"
+							class="collection-card__image"
+						/>
+					</div>
+					<div class="collection-card__body">
+						<div class="collection-card__meta">
+							<span>{arrangement.category}</span>
+							<span>{arrangement.number}</span>
+						</div>
+						<h3>{arrangement.title}</h3>
+						<p>{arrangement.description}</p>
+						<button
+							class="collection-card__open"
+							type="button"
+							aria-haspopup="dialog"
+							aria-controls={`flower-dialog-${arrangement.id}`}
+							data-open-arrangement={arrangement.id}
+						>
+							Discover {arrangement.title} <span aria-hidden="true">↗</span>
+						</button>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+	<BotanicalAccent side="left" />
+	<BotanicalAccent side="right" />
+	{arrangements.map((arrangement) => (
+		<dialog class="arrangement-dialog" id={`flower-dialog-${arrangement.id}`} aria-labelledby={`flower-dialog-title-${arrangement.id}`}>
+			<div class="arrangement-dialog__layout">
+				<div class="arrangement-dialog__visual">
+					<Picture
+						src={arrangement.image}
+						alt={arrangement.alt}
+						formats={['avif', 'webp']}
+						widths={[320, 480, 640]}
+						sizes="(min-width: 60rem) 40vw, 92vw"
+						width={640}
+						height={640}
+						loading="lazy"
+						decoding="async"
+						class="arrangement-dialog__image"
+					/>
+				</div>
+				<button class="arrangement-dialog__close" type="button" data-close-dialog aria-label={`Close ${arrangement.title} details`}>×</button>
+				<div class="arrangement-dialog__copy">
+					<p class="eyebrow">{arrangement.category}</p>
+					<h2 id={`flower-dialog-title-${arrangement.id}`}>{arrangement.title}</h2>
+					<p class="arrangement-dialog__lead">{arrangement.description}</p>
+					<p>{arrangement.detail}</p>
+					<dl class="arrangement-dialog__notes">
+						<div>
+							<dt>Colour story</dt>
+							<dd>{arrangement.palette}</dd>
+						</div>
+						<div>
+							<dt>In focus</dt>
+							<dd>{arrangement.title}</dd>
+						</div>
+					</dl>
+					<p class="arrangement-dialog__footnote">A closer look at the collection</p>
+				</div>
+			</div>
+		</dialog>
+	))}
+</section>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('[data-open-arrangement]').forEach((button) => {
+		button.addEventListener('click', () => {
+			const dialog = document.getElementById(`flower-dialog-${button.dataset.openArrangement}`);
+			if (dialog instanceof HTMLDialogElement) dialog.showModal();
+		});
+	});
+
+	document.querySelectorAll<HTMLDialogElement>('.arrangement-dialog').forEach((dialog) => {
+		dialog.querySelector('[data-close-dialog]')?.addEventListener('click', () => dialog.close());
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+	});
+</script>

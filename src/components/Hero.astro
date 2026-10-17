@@ -1,0 +1,45 @@
+---
+import { Picture } from 'astro:assets';
+import heroImage from '../assets/flowers/hero.jpg';
+import BloomingFlower from './BloomingFlower.astro';
+---
+
+<section class="hero botanical-zone" aria-labelledby="hero-title" data-botanical-reveal>
+	<div class="hero__layout">
+		<div class="hero__copy">
+			<div class="hero__copy-inner">
+				<p class="eyebrow">FLORAL ARTISTRY, WITH FEELING</p>
+				<h1 id="hero-title" class="hero__title">
+					<span>Petals</span>
+					<span><span class="hero__ampersand">&amp;</span> Grace</span>
+				</h1>
+				<p class="hero__lead">Exquisite floral artistry for life’s most precious moments.</p>
+				<p class="hero__support">Softly romantic. Beautifully considered. Always full of feeling.</p>
+				<div class="hero__actions">
+					<a class="button" href="#collection">
+						Explore the collection <span aria-hidden="true">↓</span>
+					</a>
+					<a class="text-link" href="#studio">A little about us</a>
+				</div>
+				<p class="hero__footnote"><span aria-hidden="true"></span> Flowers for the moments you hold close</p>
+			</div>
+		</div>
+
+		<div class="hero__visual">
+			<Picture
+				src={heroImage}
+				alt="A lush arrangement of pink roses and a golden gerbera against a soft, pale background"
+				formats={['avif', 'webp']}
+				widths={[480, 720, 960, 1280, 1600, 1920]}
+				sizes="(min-width: 1720px) 921px, (min-width: 801px) 52vw, 100vw"
+				width={1920}
+				height={1280}
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+				class="hero__photo"
+			/>
+			<BloomingFlower />
+		</div>
+	</div>
+</section>

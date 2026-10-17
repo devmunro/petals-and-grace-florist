@@ -1,46 +1,24 @@
-# Astro Starter Kit: Basics
+# Petals & Grace
+
+A romantic florist portfolio for High Force, built with Astro. The site uses the supplied flower photography, an editorial blush and rosewood palette, and a responsive layout for phones, tablets, desktops, and large displays.
+
+## Run locally
 
 ```sh
-npm create astro@latest -- --template basics
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Create a production build with:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run build
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Astro processes the local flower photography into responsive AVIF and WebP image sources with JPEG fallbacks. The hero is prioritized; collection images load lazily with stable, softly coloured image backdrops to avoid blank loading tiles and layout shifts.
 
-## 🧞 Commands
+The page includes a descriptive title and summary, canonical and social metadata for deployed builds, a compressed social preview image, `WebSite` structured data, and generated `robots.txt` and `sitemap.xml` routes. The public GitHub Pages URL is derived from the repository during deployment.
 
-All commands are run from the root of the project, from a terminal:
+## GitHub Pages
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The workflow in `.github/workflows/deploy.yml` builds the project when changes reach `main` and deploys `dist/` to GitHub Pages. The Astro base path is derived from the GitHub repository name during that workflow, so the project works at its Pages URL without changing local development paths.

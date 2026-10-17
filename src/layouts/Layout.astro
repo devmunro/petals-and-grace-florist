@@ -1,26 +1,95 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import heroImage from '../assets/flowers/hero.jpg';
+
+const title = 'Petals & Grace | Romantic Florist & Floral Design Portfolio';
+const description = 'Explore a romantic floral portfolio of wedding bouquets, roses, tulips, seasonal sunflowers, and orchids from Petals & Grace.';
+const socialPreview = await getImage({
+	src: heroImage,
+	width: 1200,
+	height: 630,
+	fit: 'cover',
+	format: 'jpeg',
+	quality: 80,
+});
+
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
+const canonicalUrl = Astro.site ? new URL(basePath, Astro.site).href : undefined;
+const generatedImagePath = new URL(socialPreview.src, Astro.url).pathname;
+const relativeImagePath = generatedImagePath.startsWith(basePath)
+	? generatedImagePath.slice(basePath.length)
+	: generatedImagePath.replace(/^\/+/, '');
+const socialImageUrl = new URL(`${basePath}${relativeImagePath}`, Astro.site ?? Astro.url).href;
+const structuredData = canonicalUrl
+	? JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'WebSite',
+			name: 'Petals & Grace',
+			url: canonicalUrl,
+			description,
+			inLanguage: 'en-GB',
+		})
+	: undefined;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#fbf7f2" />
+		<meta name="color-scheme" content="light" />
+		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+		<link rel="sitemap" type="application/xml" href={`${basePath}sitemap.xml`} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Petals & Grace" />
+		<meta property="og:locale" content="en_GB" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+		{canonicalUrl && <meta property="og:image" content={socialImageUrl} />}
+		{canonicalUrl && <meta property="og:image:alt" content="A romantic arrangement of pink roses and a golden gerbera" />}
+		{canonicalUrl && <meta property="og:image:width" content="1200" />}
+		{canonicalUrl && <meta property="og:image:height" content="630" />}
+		{canonicalUrl && <meta property="og:image:type" content="image/jpeg" />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{canonicalUrl && <meta name="twitter:image" content={socialImageUrl} />}
+		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+		{structuredData && <script type="application/ld+json" set:html={structuredData} />}
+		<title>{title}</title>
 	</head>
-	<body>
+	<body id="top">
+		<a class="skip-link" href="#main-content">Skip to content</a>
 		<slot />
+		<script>
+			const botanicalZones = document.querySelectorAll('[data-botanical-reveal]');
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			if (reduceMotion || !('IntersectionObserver' in window)) {
+				botanicalZones.forEach((zone) => zone.classList.add('is-visible'));
+			} else {
+				botanicalZones.forEach((zone) => zone.classList.add('is-pending'));
+				const revealObserver = new IntersectionObserver(
+					(entries, observer) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.remove('is-pending');
+								entry.target.classList.add('is-visible');
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+				);
+
+				botanicalZones.forEach((zone) => revealObserver.observe(zone));
+			}
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

@@ -1,18 +1,16 @@
----
-const title = "Petals & Grace";
-const subtitle = "Exquisite floral artistry for life's most precious moments";
-const bgImage = "../assets/header-bg.jpg"; 
----
+<header class="site-header">
+	<div class="site-header__inner page-width">
+		<a class="brand" href="#top" aria-label="Petals & Grace, home">
+			<span class="brand__name">Petals <span>&amp;</span> Grace</span>
+		</a>
 
-<header
-    class="flex flex-col items-center justify-center min-h-screen bg-[#DBDBDB] md-bg-contain bg-cover bg-no-repeat bg-left"
-    style={`background-image: url('/header.jpg')`}
->
-    <div class="bg-[#DBDBDB]/70 md:bg-transparent w-full  p-8 rounded-lg flex flex-col space-y-8 md:items-end">
-       <div class="md:w-1/2 text-center">
-        <h1 class="text-6xl font-(family-name:--font-cursive) font-bold mb-4 ">{title}</h1>
-        <p class="text-xl">{subtitle}</p>
-        </div>
-        <button class="text-md md:w-1/2 text-white bg-red-400 hover:bg-red-500 p-4 rounded cursor-pointer">Explore Our Collection</button>
-    </div>
+		<nav class="site-nav" aria-label="Main navigation">
+			<a href="#collection">The collection</a>
+			<a href="#studio">Our story</a>
+		</nav>
+
+		<a class="button button--small site-header__cta" href="#collection">
+			Explore flowers <span aria-hidden="true">↗</span>
+		</a>
+	</div>
 </header>
