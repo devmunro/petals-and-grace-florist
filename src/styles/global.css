@@ -339,6 +339,7 @@ img {
 	grid-area: visual;
 	min-width: 0;
 	min-height: 0;
+	overflow: hidden;
 	background:
 		radial-gradient(ellipse at 74% 33%, rgba(196, 134, 146, 0.28), transparent 38%),
 		radial-gradient(ellipse at 34% 72%, rgba(222, 194, 171, 0.3), transparent 35%),
