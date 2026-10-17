@@ -408,6 +408,13 @@ img {
 	stroke-width: 1.25;
 }
 
+.bloom-accent__branch,
+.bloom-accent__leaf,
+.bloom-accent__vein {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
+}
+
 .bloom-accent__blossom {
 	transform-box: view-box;
 	transform-origin: 120px 197px;
@@ -421,14 +428,20 @@ img {
 	transform-box: view-box;
 }
 
-.bloom-accent__leaf-set {
-	opacity: 1;
-	transform: scale(1);
-}
-
 @keyframes botanical-stem-grow {
 	from { stroke-dashoffset: 1; }
 	to { stroke-dashoffset: 0; }
+}
+
+@keyframes botanical-line-draw {
+	from { stroke-dashoffset: 1; }
+	to { stroke-dashoffset: 0; }
+}
+
+@keyframes botanical-leaf-draw {
+	0% { stroke-dashoffset: 1; fill-opacity: 0; }
+	82% { stroke-dashoffset: 0; fill-opacity: 0; }
+	100% { stroke-dashoffset: 0; fill-opacity: 1; }
 }
 
 @keyframes botanical-leaf-grow {
@@ -444,18 +457,39 @@ img {
 }
 
 .is-visible .bloom-accent__stem {
-	animation: botanical-stem-grow 1.4s cubic-bezier(0.35, 0, 0.2, 1) both;
+	animation: botanical-stem-grow 2.3s cubic-bezier(0.35, 0, 0.2, 1) both;
 }
 
-.is-pending .bloom-accent__leaf-set,
+.is-pending .bloom-accent__branch,
+.is-pending .bloom-accent__leaf,
+.is-pending .bloom-accent__vein {
+	stroke-dashoffset: 1;
+}
+
+.is-pending .bloom-accent__leaf {
+	fill-opacity: 0;
+}
+
 .is-pending .botanical-accent__leaf-set,
 .is-pending .studio__ornament-leaf-set {
 	opacity: 0;
 	transform: scale(0.06);
 }
 
-.is-visible .bloom-accent__leaf-set {
-	animation: botanical-leaf-grow 520ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(1.2s + var(--leaf-order) * 160ms) both;
+.bloom-accent__leaf-set {
+	--leaf-delay: calc(380ms + var(--leaf-order) * 400ms);
+}
+
+.is-visible .bloom-accent__branch {
+	animation: botanical-line-draw 180ms ease-out var(--leaf-delay) both;
+}
+
+.is-visible .bloom-accent__leaf {
+	animation: botanical-leaf-draw 420ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(var(--leaf-delay) + 120ms) both;
+}
+
+.is-visible .bloom-accent__vein {
+	animation: botanical-line-draw 240ms ease-out calc(var(--leaf-delay) + 410ms) both;
 }
 
 .bloom-accent__blossom path {
@@ -479,7 +513,7 @@ img {
 }
 
 .is-visible .bloom-accent__blossom {
-	transition: transform 900ms cubic-bezier(0.2, 0.75, 0.25, 1) 2.25s, opacity 450ms ease-out 2.25s;
+	transition: transform 900ms cubic-bezier(0.2, 0.75, 0.25, 1) 2.55s, opacity 450ms ease-out 2.55s;
 }
 
 .hero__visual picture {
@@ -1374,5 +1408,15 @@ img {
 		animation: none !important;
 		opacity: 1 !important;
 		transform: none !important;
+	}
+
+	.bloom-accent__branch,
+	.bloom-accent__leaf,
+	.bloom-accent__vein {
+		stroke-dashoffset: 0 !important;
+	}
+
+	.bloom-accent__leaf {
+		fill-opacity: 1 !important;
 	}
 }
