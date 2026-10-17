@@ -748,6 +748,11 @@ img {
 	color: var(--sage);
 	opacity: 0.26;
 	pointer-events: none;
+	transition: opacity 700ms ease;
+}
+
+.is-pending .botanical-accent {
+	opacity: 0;
 }
 
 .botanical-accent--left {
@@ -777,43 +782,13 @@ img {
 	vector-effect: non-scaling-stroke;
 }
 
-.botanical-accent__stem {
-	stroke-dasharray: 1;
-	stroke-dashoffset: 0;
-}
-
 .botanical-accent__leaf {
 	fill: rgba(105, 113, 92, 0.11);
-	stroke-dasharray: 1;
-	stroke-dashoffset: 0;
 }
 
 .botanical-accent__vein {
 	fill: none;
-	stroke-width: 1;
-	stroke-dasharray: 1;
-	stroke-dashoffset: 0;
-}
-
-.is-pending .botanical-accent__stem,
-.is-pending .botanical-accent__leaf {
-	stroke-dashoffset: 1;
-}
-
-.is-pending .botanical-accent__vein {
-	stroke-dashoffset: 1;
-}
-
-.is-visible .botanical-accent__stem {
-	transition: stroke-dashoffset 2.2s cubic-bezier(0.32, 0.72, 0.2, 1);
-}
-
-.is-visible .botanical-accent__leaf {
-	transition: stroke-dashoffset 950ms ease-out 2.2s;
-}
-
-.is-visible .botanical-accent__vein {
-	transition: stroke-dashoffset 750ms ease-out 2.4s;
+	stroke-width: 1.1;
 }
 
 .studio {
@@ -860,15 +835,17 @@ img {
 }
 
 .studio__ornament svg {
-	width: 2rem;
-	height: 2rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	transition: opacity 450ms ease;
+}
+
+.is-pending .studio__ornament svg {
+	opacity: 0;
 }
 
 .studio__ornament-stem,
-.studio__ornament-leaf,
-.studio__ornament-vein {
-	stroke-dasharray: 1;
-	stroke-dashoffset: 0;
+.studio__ornament-leaf {
 	vector-effect: non-scaling-stroke;
 }
 
@@ -883,36 +860,6 @@ img {
 	stroke: currentColor;
 	stroke-width: 1.1;
 	stroke-linejoin: round;
-	opacity: 1;
-}
-
-.studio__ornament-vein {
-	fill: none;
-	stroke: currentColor;
-	stroke-width: 0.8;
-	stroke-linecap: round;
-}
-
-.is-pending .studio__ornament-stem,
-.is-pending .studio__ornament-leaf,
-.is-pending .studio__ornament-vein {
-	stroke-dashoffset: 1;
-}
-
-.is-pending .studio__ornament-leaf {
-	opacity: 0;
-}
-
-.is-visible .studio__ornament-stem {
-	transition: stroke-dashoffset 850ms cubic-bezier(0.25, 0.75, 0.25, 1);
-}
-
-.is-visible .studio__ornament-leaf {
-	transition: stroke-dashoffset 520ms ease-out 850ms, opacity 260ms ease-out 850ms;
-}
-
-.is-visible .studio__ornament-vein {
-	transition: stroke-dashoffset 350ms ease-out 1s;
 }
 
 .studio__copy {
@@ -1289,26 +1236,10 @@ img {
 		scroll-behavior: auto !important;
 	}
 
-	.botanical-accent__stem,
-	.botanical-accent__leaf,
-	.botanical-accent__vein {
-		stroke-dashoffset: 0;
-	}
-
 	.bloom-accent__stem,
 	.bloom-accent__leaf,
 	.bloom-accent__vein {
 		stroke-dashoffset: 0;
-	}
-
-	.studio__ornament-stem,
-	.studio__ornament-leaf,
-	.studio__ornament-vein {
-		stroke-dashoffset: 0;
-	}
-
-	.studio__ornament-leaf {
-		opacity: 1;
 	}
 
 	.bloom-accent__blossom {
