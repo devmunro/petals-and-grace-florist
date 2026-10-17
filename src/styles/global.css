@@ -965,6 +965,17 @@ img {
 	}
 }
 
+@media (max-width: 1100px) {
+	.collection > .botanical-accent,
+	.studio > .botanical-accent {
+		display: none;
+	}
+
+	.studio__copy {
+		padding-right: 0;
+	}
+}
+
 @media (max-width: 1199px) {
 	.site-header__inner {
 		grid-template-columns: minmax(11rem, 1fr) auto auto;
@@ -1074,11 +1085,6 @@ img {
 	.studio__copy {
 		max-width: none;
 		padding-right: 0;
-	}
-
-	.collection > .botanical-accent,
-	.studio > .botanical-accent {
-		display: none;
 	}
 
 	.site-footer__inner {
