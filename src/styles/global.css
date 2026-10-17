@@ -414,15 +414,15 @@ img {
 }
 
 .is-visible .bloom-accent__leaf {
-	transition: stroke-dashoffset 1.1s ease-out 420ms;
+	transition: stroke-dashoffset 1.1s ease-out 1.55s;
 }
 
 .is-visible .bloom-accent__vein {
-	transition: stroke-dashoffset 800ms ease-out 620ms;
+	transition: stroke-dashoffset 800ms ease-out 1.75s;
 }
 
 .is-visible .bloom-accent__blossom {
-	transition: transform 950ms cubic-bezier(0.2, 0.75, 0.25, 1) 1.25s, opacity 450ms ease-out 1.25s;
+	transition: transform 950ms cubic-bezier(0.2, 0.75, 0.25, 1) 1.55s, opacity 450ms ease-out 1.55s;
 }
 
 .hero__visual picture {
@@ -809,11 +809,11 @@ img {
 }
 
 .is-visible .botanical-accent__leaf {
-	transition: stroke-dashoffset 950ms ease-out 650ms;
+	transition: stroke-dashoffset 950ms ease-out 2.2s;
 }
 
 .is-visible .botanical-accent__vein {
-	transition: stroke-dashoffset 750ms ease-out 850ms;
+	transition: stroke-dashoffset 750ms ease-out 2.4s;
 }
 
 .studio {
@@ -908,11 +908,11 @@ img {
 }
 
 .is-visible .studio__ornament-leaf {
-	transition: stroke-dashoffset 520ms ease-out 420ms, opacity 260ms ease-out 420ms;
+	transition: stroke-dashoffset 520ms ease-out 850ms, opacity 260ms ease-out 850ms;
 }
 
 .is-visible .studio__ornament-vein {
-	transition: stroke-dashoffset 350ms ease-out 720ms;
+	transition: stroke-dashoffset 350ms ease-out 1s;
 }
 
 .studio__copy {
