@@ -8,15 +8,42 @@ const { side = 'left' } = Astro.props;
 
 <div class={`botanical-accent botanical-accent--${side}`} aria-hidden="true">
 	<svg viewBox="0 0 180 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<!-- Six related leaves grow from marked points along one continuous stem. -->
-		<path class="botanical-accent__leaf" d="M60 429C46 425 34 410 27 390C44 393 58 405 63 425C62 427 61 428 60 429Z" />
-		<path class="botanical-accent__leaf" d="M103 363C116 348 131 338 143 334C140 352 126 365 107 368C105 366 104 364 103 363Z" />
-		<path class="botanical-accent__leaf" d="M57 299C43 295 31 281 25 262C42 265 55 278 60 295C59 297 58 298 57 299Z" />
-		<path class="botanical-accent__leaf" d="M104 232C119 217 137 202 151 197C148 217 133 233 108 237C106 235 105 233 104 232Z" />
-		<path class="botanical-accent__leaf" d="M56 169C43 165 31 150 25 131C42 134 54 147 59 165C58 167 57 168 56 169Z" />
-		<path class="botanical-accent__leaf" d="M102 102C115 86 132 72 147 67C144 88 129 104 106 107C104 105 103 103 102 102Z" />
-		<path class="botanical-accent__stem" d="M84 514C84 492 80 462 78 440C76 419 82 395 84 375C86 354 80 332 79 310C78 288 83 265 83 245C83 224 77 202 78 180C79 159 82 136 81 115C80 93 87 58 89 18" />
-		<path class="botanical-accent__branch" d="M78 440C73 437 67 433 60 429M84 375C90 371 97 367 103 363M79 310C73 307 65 303 57 299M83 245C89 241 97 236 104 232M78 180C72 176 64 172 56 169M81 115C87 111 95 106 102 102" />
-		<path class="botanical-accent__vein" d="M60 429C48 417 37 403 29 392M103 363C118 350 132 339 141 335M57 299C46 287 34 273 27 264M104 232C120 217 137 204 149 199M56 169C45 156 33 141 27 133M102 102C116 88 133 74 145 69" />
+		<path class="botanical-accent__stem" pathLength="1" d="M84 514C84 492 80 462 78 440C76 419 82 395 84 375C86 354 80 332 79 310C78 288 83 265 83 245C83 224 77 202 78 180C79 159 82 136 81 115C80 93 83 68 86 52C88 36 89 24 89 18" />
+
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 0; transform-origin: 43.33% 84.62%">
+			<path class="botanical-accent__branch" pathLength="1" d="M78 440C73 437 67 433 60 429" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M60 429C46 425 34 410 27 390C44 393 58 405 63 425C62 427 61 428 60 429Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M60 429C48 417 37 403 29 392" />
+		</g>
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 1; transform-origin: 46.67% 72.12%">
+			<path class="botanical-accent__branch" pathLength="1" d="M84 375C90 371 97 367 103 363" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M103 363C116 348 131 338 143 334C140 352 126 365 107 368C105 366 104 364 103 363Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M103 363C118 350 132 339 141 335" />
+		</g>
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 2; transform-origin: 43.89% 59.62%">
+			<path class="botanical-accent__branch" pathLength="1" d="M79 310C73 307 65 303 57 299" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M57 299C43 295 31 281 25 262C42 265 55 278 60 295C59 297 58 298 57 299Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M57 299C46 287 34 273 27 264" />
+		</g>
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 3; transform-origin: 46.11% 47.12%">
+			<path class="botanical-accent__branch" pathLength="1" d="M83 245C89 241 97 236 104 232" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M104 232C119 217 137 202 151 197C148 217 133 233 108 237C106 235 105 233 104 232Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M104 232C120 217 137 204 149 199" />
+		</g>
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 4; transform-origin: 43.33% 34.62%">
+			<path class="botanical-accent__branch" pathLength="1" d="M78 180C72 176 64 172 56 169" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M56 169C43 165 31 150 25 131C42 134 54 147 59 165C58 167 57 168 56 169Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M56 169C45 156 33 141 27 133" />
+		</g>
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 5; transform-origin: 45% 22.12%">
+			<path class="botanical-accent__branch" pathLength="1" d="M81 115C87 111 95 106 102 102" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M102 102C115 86 132 72 147 67C144 88 129 104 106 107C104 105 103 103 102 102Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M102 102C116 88 133 74 145 69" />
+		</g>
+		<g class="botanical-accent__leaf-set" style="--leaf-order: 6; transform-origin: 47.78% 10%">
+			<path class="botanical-accent__branch" pathLength="1" d="M86 52C80 48 71 44 63 40" />
+			<path class="botanical-accent__leaf" pathLength="1" d="M63 40C50 36 39 24 32 7C49 10 61 21 66 36C65 38 64 39 63 40Z" />
+			<path class="botanical-accent__vein" pathLength="1" d="M63 40C51 29 42 18 34 9" />
+		</g>
 	</svg>
 </div>

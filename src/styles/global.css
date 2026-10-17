@@ -386,6 +386,8 @@ img {
 .bloom-accent__stem {
 	stroke: var(--sage);
 	stroke-width: 2.6;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
 }
 
 .bloom-accent__branch {
@@ -412,6 +414,49 @@ img {
 	opacity: 1;
 }
 
+.bloom-accent__leaf-set,
+.botanical-accent__leaf-set,
+.studio__ornament-leaf-set {
+	transform-box: view-box;
+}
+
+.bloom-accent__leaf-set {
+	opacity: 1;
+	transform: scale(1);
+}
+
+@keyframes botanical-stem-grow {
+	from { stroke-dashoffset: 1; }
+	to { stroke-dashoffset: 0; }
+}
+
+@keyframes botanical-leaf-grow {
+	0% { opacity: 0; transform: scale(0.06); }
+	78% { opacity: 1; transform: scale(1.04); }
+	100% { opacity: 1; transform: scale(1); }
+}
+
+.is-pending .bloom-accent__stem,
+.is-pending .botanical-accent__stem,
+.is-pending .studio__ornament-stem {
+	stroke-dashoffset: 1;
+}
+
+.is-visible .bloom-accent__stem {
+	animation: botanical-stem-grow 1.4s cubic-bezier(0.35, 0, 0.2, 1) both;
+}
+
+.is-pending .bloom-accent__leaf-set,
+.is-pending .botanical-accent__leaf-set,
+.is-pending .studio__ornament-leaf-set {
+	opacity: 0;
+	transform: scale(0.06);
+}
+
+.is-visible .bloom-accent__leaf-set {
+	animation: botanical-leaf-grow 520ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(1.2s + var(--leaf-order) * 160ms) both;
+}
+
 .bloom-accent__blossom path {
 	fill: rgba(243, 229, 226, 0.78);
 }
@@ -433,7 +478,7 @@ img {
 }
 
 .is-visible .bloom-accent__blossom {
-	transition: transform 950ms cubic-bezier(0.2, 0.75, 0.25, 1) 350ms, opacity 450ms ease-out 350ms;
+	transition: transform 900ms cubic-bezier(0.2, 0.75, 0.25, 1) 2.25s, opacity 450ms ease-out 2.25s;
 }
 
 .hero__visual picture {
@@ -795,6 +840,24 @@ img {
 	vector-effect: non-scaling-stroke;
 }
 
+.botanical-accent__stem {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
+}
+
+.botanical-accent__leaf-set {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.is-visible .botanical-accent__stem {
+	animation: botanical-stem-grow 1.35s cubic-bezier(0.35, 0, 0.2, 1) both;
+}
+
+.is-visible .botanical-accent__leaf-set {
+	animation: botanical-leaf-grow 480ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(1.15s + var(--leaf-order) * 110ms) both;
+}
+
 .botanical-accent__leaf {
 	fill: rgba(105, 113, 92, 0.14);
 }
@@ -871,6 +934,21 @@ img {
 	stroke: currentColor;
 	stroke-width: 1.1;
 	stroke-linecap: round;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
+}
+
+.studio__ornament-leaf-set {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.is-visible .studio__ornament-stem {
+	animation: botanical-stem-grow 620ms ease-out both;
+}
+
+.is-visible .studio__ornament-leaf-set {
+	animation: botanical-leaf-grow 360ms cubic-bezier(0.2, 0.75, 0.25, 1) calc(540ms + var(--leaf-order) * 100ms) both;
 }
 
 .studio__ornament-branch {
@@ -1281,5 +1359,19 @@ img {
 	.bloom-accent__blossom {
 		transform: scale(1);
 		opacity: 1;
+	}
+
+	.bloom-accent__stem,
+	.botanical-accent__stem,
+	.studio__ornament-stem {
+		stroke-dashoffset: 0 !important;
+	}
+
+	.bloom-accent__leaf-set,
+	.botanical-accent__leaf-set,
+	.studio__ornament-leaf-set {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
 	}
 }
